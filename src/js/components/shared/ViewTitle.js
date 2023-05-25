@@ -1,13 +1,11 @@
 import React from "react"
 
 
-export default function ViewTitle(){
+export default function ViewTitle(props){
   return(
     <div className="chat-name-container">
-      <span className="name">Choose your channel</span>
-      <a
-        href="/"
-        className="btn btn-primary btn-sm back-button">Back</a>
+      <span className="name">{props.text}</span>
+      
     </div>
   )
 }

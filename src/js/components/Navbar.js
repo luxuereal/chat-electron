@@ -1,5 +1,5 @@
 import React from "react";
-import {Link, useNavigate} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom';
 
 export default function Navbar(){
   const navigate = useNavigate() 
@@ -11,6 +11,7 @@ export default function Navbar(){
           <div className="chat-navbar-inner-left">
             <button onClick={() => navigate(-1)} className="btn btn-outline-primarry">Back</button>
             <Link to="/settings" className="btn btn-outline-success ml-2">Settings</Link>
+           
           </div>
           <div className="chat-navbar-inner-right">
             <span className="logged-in-user">Hi User</span>

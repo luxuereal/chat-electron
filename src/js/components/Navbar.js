@@ -15,10 +15,7 @@ export default function Navbar(){
           </div>
           <div className="chat-navbar-inner-right">
             <span className="logged-in-user">Hi User</span>
-            <button
-              
-              onClick={() => navigate('/register')}
-              className="btn  btn-outline-danger ml-2">Register</button>
+            
             <button
               
               onClick={() => navigate('/login')}

@@ -1,14 +1,30 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import {  useNavigate } from "react-router-dom";
 import LoginForm from "../components/LoginForm";
 import RegisterForm from "../components/RegisterForm";
+import LoadingView from './../components/shared/LoadingVIew';
 
 
 export default function Welcome() {
-  const [isLoginView, setIsLogin] = useState(true)
+  const navigate = useNavigate();
+  const [isLoginView, setIsLogin] = useState(true);
+  const user = useSelector(({auth}) => auth.user)
+  const isChecking = useSelector(({auth}) => auth.isChecking)
+
+
 
   const optInText = isLoginView ? 
   ['Need an account?', 'Register'] : 
   ['Already registered?', 'Login']
+
+  if(isChecking) {
+    return <LoadingView />
+  }
+
+  if(user){
+    return navigate('/home')
+  }
 
   return(
     <div className="centered-view">

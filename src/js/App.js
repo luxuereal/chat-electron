@@ -14,7 +14,6 @@ import {
   HashRouter as Router, 
   Routes,
   Route,
-  
   Navigate
 } from 'react-router-dom';
 
@@ -29,8 +28,21 @@ function ChatApp() {
  const dispatch = useDispatch()
  const isChecking = useSelector(({auth})=>auth.isChecking)
 
+ const alertOnlineStatus = () => {
+  window.alert(navigator.onLine ? "Online" : "Offline")
+ }
+
   useEffect(()=>{
-    dispatch(listenToAuthChanges())
+    const unsubFromAuth = dispatch(listenToAuthChanges());
+
+    window.addEventListener('online', alertOnlineStatus)
+    window.addEventListener('offline', alertOnlineStatus)
+
+    return  () => {
+      unsubFromAuth()
+      window.removeEventListener('online', alertOnlineStatus)
+      window.removeEventListener('offline', alertOnlineStatus) 
+    }
   },[dispatch])
 
   if(isChecking){
